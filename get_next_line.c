@@ -6,7 +6,7 @@
 /*   By: adconsta <adconsta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 16:43:32 by adconsta          #+#    #+#             */
-/*   Updated: 2020/11/30 10:31:37 by adconsta         ###   ########.fr       */
+/*   Updated: 2021/01/28 19:17:55 by calao            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*ft_update_storage(char *storage)
 		return (NULL);
 	}
 	i++;
-	new_str = ft_strdup(storage + i);
+	new_str = ft_gnlstrdup(storage + i);
 	free(storage);
 	return (new_str);
 }
@@ -69,7 +69,7 @@ int		read_file(char **storage, char **line, char *buf, int fd)
 			&& ((res = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
 		buf[res] = '\0';
-		if ((storage[fd] = ft_strjoin(storage[fd], buf)) == NULL)
+		if ((storage[fd] = ft_gnlstrjoin(storage[fd], buf)) == NULL)
 			return (-1);
 	}
 	if (res == -1)
@@ -92,7 +92,7 @@ int		get_next_line(int fd, char **line)
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
 		return (-1);
 	if (storage[fd] == NULL)
-		if ((storage[fd] = ft_strdup("")) == NULL)
+		if ((storage[fd] = ft_gnlstrdup("")) == NULL)
 			return (-1);
 	if ((buf = malloc(sizeof(*buf) * (BUFFER_SIZE + 1))) == NULL)
 		return (-1);
